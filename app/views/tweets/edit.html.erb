@@ -1,0 +1,36 @@
+<%= form_for @tweet do |f| %>
+
+  <div class="field">
+  <%= f.label :region, "地方" %>
+  <%= f.select :region, options_for_select([
+      ["北海道", "hokkaido"],
+      ["東北", "tohoku"],
+      ["関東", "kanto"],
+      ["中部", "tyubu"],
+      ["近畿", "kinki"],
+      ["中国", "chugoku"],
+      ["四国", "shikoku"],
+      ["九州", "kyushu"],
+      ["沖縄", "okinawa"]
+    ], @tweet.region) %>
+</div>
+
+  <%= f.label :name, "名前" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :price, "価格" %>
+  <%= f.number_field :price %>
+
+  <%= f.label :about, "説明" %>
+  <%= f.text_area :about %>
+
+  <%= f.label :image, "画像" %>
+  <%= f.file_field :image %>
+
+  <% if @tweet.image.attached? %>
+    <p>現在の画像:</p>
+    <%= image_tag @tweet.image.variant(resize: "200x150") %>
+  <% end %>
+
+  <%= f.submit "編集する" %>
+<% end %>

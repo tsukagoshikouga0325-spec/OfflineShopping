@@ -1,0 +1,65 @@
+<h1><%= @region_name %>のお土産一覧</h1>
+
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to "新規投稿へ", new_tweet_path %>
+<% end %>
+
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+      <!-- 左：画像 -->
+      <% if t.image.attached? %>
+        <%= image_tag t.image, size: '250x200', class: "tweet-image" %>
+      <% end %>
+
+      <!-- 右：情報 -->
+      <div class="tweet-content">
+        <!-- 名前 + 値段 -->
+        <div class="tweet-header">
+          <p class="tweet-name"><%= t.name %></p>
+          <p class="tweet-price"><%= t.price %>円</p>
+        </div>
+
+        <!-- 星といいね -->
+        <div class="tweet-meta">
+         <div class="tweet-rating">
+         <span class="rating-label">限定度：</span>
+          <div class="star-rating">
+            <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+            <span class="star-rating-back">★★★★★</span>
+          </div>
+         </div>
+
+          <div class="like-button">
+            <% if user_signed_in? %>
+              <% if current_user.already_liked?(t) %>
+                <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+                  <i class="fas fa-heart fa-lg" style="color:crimson;"></i><%= t.likes.count %>
+                <% end %>
+              <% else %>
+                <%= button_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+                  <i class="fas fa-heart fa-lg" style="color:crimson;"></i><%= t.likes.count %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <i class="far fa-heart"></i><%= t.likes.count %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- 説明文 -->
+        <p class="tweet-about"><%= t.about %></p>
+
+        <% if user_signed_in? && current_user.admin? %>
+          <div class="tweet-actions">
+            <%= link_to "詳細へ", tweet_path(t.id) %>
+            <%= link_to "編集する", edit_tweet_path(t.id) %>
+            <%= link_to "削除する", tweet_path(t.id), data: { turbo_method: :delete } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "トップページに戻る", tweets_path %>

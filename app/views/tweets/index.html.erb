@@ -1,0 +1,140 @@
+<div class="first-block">
+  <%= image_tag("tokyo.webp", class: "tokyo") %>
+  <div class="image-text">
+    <p class="en">Offline Shopping</p>
+    <p class="jp">現地でしか手に入らない、本当のご当地土産</p>
+  </div>
+</div>
+
+
+
+<div class="eria">
+<h1>Area</h1>
+</div>
+
+<div class="white-box">
+  <div class="gabyou">
+      <%= image_tag("gabyou.png", alt: "Search & List", class: "gabyou-image") %>
+  </div>
+  <div class="second-block">
+    <%= image_tag("japan.png", class: "top_image") %>
+      <div class="region-list">
+        <%= link_to "北海道", region_tweets_path("hokkaido"), class: "region-button hokkaido" %>
+        <%= link_to "東北", region_tweets_path("tohoku"), class: "region-button tohoku" %>
+        <%= link_to "関東", region_tweets_path("kanto"), class: "region-button kanto" %>
+        <%= link_to "中部", region_tweets_path("tyubu"), class: "region-button tyubu" %>
+        <%= link_to "近畿", region_tweets_path("kinki"), class: "region-button kinki" %>
+        <%= link_to "中国", region_tweets_path("chugoku"), class: "region-button chugoku" %>
+        <%= link_to "四国", region_tweets_path("shikoku"), class: "region-button shikoku" %>
+        <%= link_to "九州", region_tweets_path("kyushu"), class: "region-button kyushu" %>
+        <%= link_to "沖縄", region_tweets_path("okinawa"), class: "region-button okinawa" %>
+      </div>
+  </div>
+  
+  <div class="areamoji">
+    <h3>旅先をクリックしてお土産を探そう</h3>
+  </div>
+</div>
+
+
+
+
+<div class="sagasu">
+<h1>Search & List</h1>
+</div>
+
+
+<div class="miyadora">
+ <div class="miyage">
+  <%= link_to tweets_search_path do %>
+    <%= image_tag("土産.jpg", alt: "Search & List", class: "search-image") %>
+  <% end %>
+ </div>
+
+ <div class="dorayaki">
+  <%= link_to tweets_search_path do %>
+    <%= image_tag("dorayaki.jpeg", alt: "Search & List", class: "dorayaki-image") %>
+  <% end %>
+ </div>
+
+  <div class="kyoto">
+  <%= link_to tweets_search_path do %>
+    <%= image_tag("kyoto.jpg", alt: "Search & List", class: "kyoto-image") %>
+  <% end %>
+ </div>
+</div>
+
+<div class="kotira">
+<h5>特定のワードから探したい方、お土産一覧を閲覧したい方はこちらの画像をクリック</h5>
+</div>
+
+
+
+<div class="setumei">
+<h1>About</h1>
+</div>
+
+<div class="intro-box">
+  <!-- 左：画像 -->
+  <div class="intro-left">
+      <%= image_tag("syokku.jpg", alt: "Search & List", class: "intro-image") %>
+  </div>
+
+  <!-- 右：説明文 -->
+  <div class="intro-right">
+    <h2 class="intro-title">このサイトについて</h2>
+
+    <p class="intro-catchcopy">
+      旅先で買ったお土産、東京に戻ったら…普通に売ってた!?
+    </p>
+
+    <p>
+      このように旅先で買った特別感が薄れて悲しくなる現象、ありますよね。<br>
+      そんなお悩みを持つアナタ。安心してください。<br>
+      このサイトはそんな"がっかり体験"を根絶するために生まれました。<br>
+      ここでは、通販には売ってない、その現地でしか買えない"本当のご当地土産"を掲載しています。<br>
+      実際に、気になるエリア、ワードから探してみましょう。<br>
+      また、ログインすると気に入ったお土産に「いいね」することができます。
+いいねしたお土産はマイページからいつでも見返すことができるので、
+あなたのお気に入りリストとして活用してください。
+    </p>
+
+　　<p class="intro-last">
+      ～旅行の特別感を大切にしたいあなたへ～<br>
+      「ここでしか出会えない一品」を探す旅、始めませんか？
+    </p>
+  </div>
+</div>
+
+
+
+
+
+<div class="concept">
+<h1>Attractions</h1>
+</div>
+
+<div class="cards-background">
+  <div class="cards-container">
+    <div class="card">
+      <h2>Take Memories Home</h2>
+      <p>旅先で出会った感動や驚き、ちょっとした発見や心が弾んだ瞬間を、形あるものとして持ち帰る。その土地ならではのお土産は、手に取った瞬間から旅の思い出をそっと呼び起こしてくれます。</p>
+    </div>
+
+    <div class="card">
+      <h2>Hidden Treasures</h2>
+      <p>観光地の華やかな表舞台に隠れるように、まだ広く知られていないお土産が存在します。地元の人々に長く愛され、旅人にとっては新鮮な発見となる“隠れた宝物”。それは土地の歴史や文化を映し出す価値を秘めています。</p>
+    </div>
+
+    <div class="card">
+      <h2>Crafted Locally</h2>
+      <p>土地の自然や文化に寄り添い、地域の人々の手で丁寧につくられたお土産。そこには作り手の想いが込められ、一つひとつに物語が宿っています。地元に根ざした品には、温かさと唯一無二の魅力があります。</p>
+    </div>
+  </div>
+</div>
+
+
+
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to "新規投稿へ", new_tweet_path %>
+<% end %>

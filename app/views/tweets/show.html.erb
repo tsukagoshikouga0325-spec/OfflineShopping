@@ -1,0 +1,39 @@
+<h1>tabemap</h1>
+<h3>Tweet詳細</h3>
+<div class="tweet">
+  <p>名前：<%= @tweet.name %></p>
+  <p>価格：<%= @tweet.price %></p>
+  <p>説明：<%= @tweet.about %></p>
+  
+  <% if user_signed_in? && current_user.admin? %>
+    <p>投稿日時：<%= @tweet.created_at %></p>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <% if current_user.already_liked?(@tweet) %>
+      <%= button_to tweet_like_path(@tweet), method: :delete do %>
+        <i class="fas fa-heart fa-lg" style="color:crimson;"></i><%= @tweet.likes.count %>
+      <% end %>
+    <% else %>
+      <%= button_to tweet_likes_path(@tweet), method: :post do %>
+        <i class="fas fa-heart fa-lg" style="color:crimson;"></i><%= @tweet.likes.count %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <i class="fas fa-heart fa-lg" style="color:crimson;"></i><%= @tweet.likes.count %>
+  <% end %>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "編集する", edit_tweet_path(@tweet.id) %>
+    <%= link_to "削除する", tweet_path(@tweet.id), data: { turbo_method: :delete } %>
+  <% end %>
+</div>
+
+<% if user_signed_in? && current_user.admin? %>
+  <h2>いいねしたユーザー</h2>
+  <% @tweet.liked_users.each do |user| %>
+    <li><%= user.email %></li>
+  <% end %>
+<% end %>
+
+<%= link_to "Tweet一覧に戻る", tweets_path %>

@@ -1,0 +1,208 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  background-color: #fffef9;  
+}
+
+header {
+  background-color: #fffef9;
+  height: 70px;
+  display: flex;
+  justify-content: space-between; /* 左右に要素を配置 */
+  align-items: center;
+  padding: 0 20px; /* 左右の余白 */
+  position: relative;
+}
+
+.header-title h1 {
+  font-family: 'Georgia', serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff7f50;
+  margin: 0;
+}
+
+.header-title h1 span {
+  color: #333;
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* リスト間隔 */
+  margin: 0;
+}
+
+header ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+header li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+header a {
+  color: rgb(0, 0, 0); 
+  text-decoration: none; 
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+header a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b); /* グラデーション */
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+header a:hover {
+  color: #ff7e5f;         /* アクセントカラーに変化 */
+  transform: scale(1.05); /* 少し拡大してアクティブ感 */
+}
+
+header a:hover::after {
+  width: 100%;
+  left: 0; /* 中央から両端に広がる */
+}
+
+
+.login {
+  display: flex; 
+  background-color: #ffffff; 
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+.iro {
+  color: #000000;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column; /* 縦並び */
+    height: auto;
+    padding: 10px;
+  }
+
+  .header-title h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .header-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .login {
+    margin-top: 10px;
+  }
+}
+
+h1{
+  font-family: 'Playfair Display', serif;
+}
+
+
+
+
+footer {
+  color: white;
+  height: 100px;
+  background-color: #000;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  
+  justify-content: center;
+}
+
+.mypage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #fffaf0; /* ほんのり薄い背景色 */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.mypage h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.mypage p {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}
+
+.mypage .edit-btn {
+  display: inline-block;
+  margin: 15px 0;
+  padding: 8px 20px;
+  background-color: #ffb74d;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.mypage .edit-btn:hover {
+  background-color: #ffa726;
+  transform: scale(1.05);
+}
+
+.likes-header h2 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 25px;
+  background: linear-gradient(90deg, #ffecd2, #fcb69f);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  font-family: 'Playfair Display', serif;
+}
+

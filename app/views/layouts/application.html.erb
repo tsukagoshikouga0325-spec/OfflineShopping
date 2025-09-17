@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OfflineShopping</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+     <script src="https://kit.fontawesome.com/993f6a3647.js"  crossorigin="anonymous"></script> 
+     
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+
+<body>
+ <header>
+  <div class="header-title">
+      <h1>Offline <span>Shopping</span></h1>
+  </div>
+ 
+  <div class="header-list">
+   <ul>
+     <li><%= link_to "Home", tweets_path %></li>
+   </ul>
+  </div>
+
+  <div class="my">
+<% if user_signed_in? %>
+  <%= link_to "My Page", user_path(current_user.id) %>
+<% else %>
+  <%= link_to "My Page", new_user_session_path %>
+<% end %>
+  </div>
+
+
+  <div class="search">
+  <li><%= link_to "Search & List",tweets_search_path %></li>
+  </div>
+    
+  <div class="login">    
+    <% if user_signed_in? %>
+      <li><%= button_to destroy_user_session_path, method: :delete do %><p class="iro">Log Out</p> <% end %></li>
+    <% else %>
+      <li><%= link_to new_user_session_path do %><p class="iro">Log In</p> <% end %></li>
+      <span class="iro"> / </span> 
+      <li><%= link_to new_user_registration_path do %><p class="iro">Sign Up</p> <% end %></li>  
+    <% end %>
+  </div>
+  </ul>
+  </div>
+ </header>
+ <main>
+  <%= yield %>
+ </main>
+</body>
+
+<footer>
+     <p>© 2025 Offline Shopping All Rights Reserved.</p>
+</footer>
+
+</html>

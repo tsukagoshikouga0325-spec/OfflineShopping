@@ -1,0 +1,65 @@
+<h1>Tabemap</h1>
+<h3>新規お土産投稿ページ</h3>
+<%= form_for @tweet do |f| %>
+
+
+    <div class="field">
+  <%= f.label :region, "地方" %>
+  <%= f.select :region, options_for_select([
+      ["北海道", "hokkaido"],
+      ["東北", "tohoku"],
+      ["関東", "kanto"],
+      ["中部", "tyubu"],
+      ["近畿", "kinki"],
+      ["中国", "chugoku"],
+      ["四国", "shikoku"],
+      ["九州", "kyushu"],
+      ["沖縄", "okinawa"]
+    ], @tweet.region) %>
+</div>
+
+<h5>総合評価</h5>
+     <div class="post_form">
+        <%= f.radio_button :overall, 5 ,id: 'star1'%>
+        <label for="star1"><span class="text">最高</span>★</label>
+    
+        <%= f.radio_button :overall, 4 ,id: 'star2'%>
+        <label for="star2"><span class="text">良い</span>★</label>
+    
+        <%= f.radio_button :overall, 3 ,id: 'star3'%>
+        <label for="star3"><span class="text">普通</span>★</label>
+    
+        <%= f.radio_button :overall, 2 ,id: 'star4'%>
+        <label for="star4"><span class="text">悪い</span>★</label>
+    
+        <%= f.radio_button :overall, 1 ,id: 'star5'%>
+        <label for="star5"><span class="text">最悪</span>★</label>
+     </div>
+
+<!-- 商品名（string） -->
+<div class="field">
+<%= f.label :name, "土産の名前" %>
+<%= f.text_field :name, size: 30 %>
+</div>
+
+<!-- 値段（integer） -->
+<div class="field">
+<%= f.label :price, "値段（円）" %>
+<%= f.number_field :price, size: 10 %>
+</div>
+
+<!-- 説明（text） -->
+<div class="field">
+<%= f.label :about, "紹介文" %>
+<%= f.text_area :about, size: "30x2" %>
+</div>
+
+<div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+</div>
+
+<%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", tweets_path %>
